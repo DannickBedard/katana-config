@@ -23,9 +23,9 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   ;; @escctrl a   s   d   f    g    h    j   k   l   ;     _     ret
   ;; @escctrl @a   @s   @d   @f    g    h    @j   @k   @l   @;     _     ret
-  @vimhold a   s   d   @f    g    h    @j   k   l   ;     _     XX ;; shift on power finger
+  @escctrl a   s   d   @f    g    h    @j   k   l   ;     _     XX ;; shift on power finger
   lsft  z    x    c    v    b    n    m    ,    .    /    XX
-  lctl lmet @lalt           @spc            XX XX XX
+  lctl @lalt lmet            @spc            ralt rmet rctl
 )
 
 (deflayer nomods
@@ -33,23 +33,15 @@
   tab  q   w    e    r    t    y    u    i    o    p    [    ]    \
   caps a   s    d    f    g    h    j    k    l    ;    _    ret
   lsft z    x    c    v    b    n    m    ,    .    /    spc
-  lctl lmet lalt           spc            XX XX XX
+  lctl lalt lmet            spc            ralt rmet rctl
 )
 
 (deflayer symbole
   grv 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab q    w    e    r    t    @lsb    @lp    @rp  o    p    [    ]    \
-  @vimhold a    s    d    ret  g    @rsb    @lb    @rb   l   @vimCmd   @dq   XX
+  @escctrl a    s    d    ret  g    @rsb    @lb    @rb   l   @vimCmd   @dq   XX
   lsft z   x    c    v    b    n    m    ,    .    /    XX
-  lctl lmet @lalt           spc            XX XX XX
-)
-
-(deflayer l_vim
-  grv 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  @v_qforce    @v_saveq    @v_Ex    r    t    y    u    i    o    p    [    ]    \
-  @vimhold @v_savea   @v_save   d   f    g    h    j   k   l   ;     _     XX ;; shift on power finger
-  lsft  z    x    c    v    b    n    m    ,    .    /    XX
-  lctl lmet @lalt           @spc            XX XX XX
+  lctl @lalt lmet            spc            ralt rmet rctl
 )
 
 (defvar
@@ -92,19 +84,9 @@
   rsb (unicode "]")
   lb (unicode "{")
   rb (unicode "}")
-  ex (unicode "!")
   dq (unicode r#"""#)
-  E (unicode "E")
-  x (unicode "x")
   vimCmd (unicode ":")
-  vimhold (layer-while-held l_vim)
-
-  v_save (macro @vimCmd w ret)
-  v_saveq (macro @vimCmd w q ret)
-  v_savea (macro @vimCmd w a ret)
-  v_saveaq (macro @vimCmd w a q ret)
-  v_qforce (macro @vimCmd q @ex ret)
-  v_Ex (macro @vimCmd S-e x ret)
+  escctrl (tap-hold 100 100 esc lctl)
 
   tap (multi
     (layer-switch base)
